@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+
+{{ kitob.title }}
+
+{% endblock %}
+
+
+
+{% block main %}
+
+     <div class="row">
+        <div class="col-2">
+            <img src="{{ kitob.picture.url }}" class="w-100" alt="">
+        </div>
+        <div class="col-10">
+            <h3>{{ kitob.title }}</h3>
+            <p>{{ kitob.description }}</p>
+            <span class="badge bg-secondary">{{ kitob.isbn }}</span>
+        </div>
+    </div>
+
+    <ul>
+        {% for i in kitob.review_set.all %}
+            <li>
+                <img src="{{ i.user.picture.url }}" style="width:50px; height:50px; border-radius:50%" alt="">
+                <span>{{ i.user }}</span>
+                <span>{{i.comment}}</span>
+            </li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

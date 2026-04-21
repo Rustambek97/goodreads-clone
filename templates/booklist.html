@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+BookList
+{% endblock %}
+
+{% block main %}
+
+<div class="row">
+    {% for i in kitoblar %}
+    <div class="col-3">
+        <div class="card">
+            <img src="{{ i.picture.url }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h3 class="card-title">{{ i.title }}</h3>
+                <p class="card-text"> {{ i.description | slice:100 }} </p>
+                <a href="{% url 'bookdetail' i.pk %}" class="btn btn-primary">Batafsil</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

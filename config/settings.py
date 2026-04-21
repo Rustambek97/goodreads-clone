@@ -26,7 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books',
+    'users',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
+LOGOUT_REDIRECT_URL = 'homepage'
+LOGIN_REDIRECT_URL = 'homepage'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
