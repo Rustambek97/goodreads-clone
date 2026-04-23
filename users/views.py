@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.views import View
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, EditProfileForm
 
 class LoginView(View):
     def get(self, request):
@@ -37,8 +37,18 @@ class ProfileView(View):
         return render(request, 'user/profile.html', {'user': request.user})
 
 
+class ProfileEditView(View):
+    def get(self, request):
+        form = EditProfileForm(instance=request.user)
+        return render(request, 'user/profile_edit.html', {'form': form})
 
+    def post(self, request):
+        form = EditProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
 
+        return render(request, 'user/profile_edit.html', {'form': form})
 
 
 

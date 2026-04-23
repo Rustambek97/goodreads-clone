@@ -32,4 +32,26 @@
 
         {% endfor %}
     </ul>
+    {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="comment" class="form-control" placeholder="send comment" id="" cols="30" rows="5"></textarea>
+            <button type="submit" class="btn btn-success mt-2">Send</button>
+        </form>
+    {% else %}
+        <p>
+            comment yozish uchun <a href="{% url 'login' %}">login</a> qil!
+        </p>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
